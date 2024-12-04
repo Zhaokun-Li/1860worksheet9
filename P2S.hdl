@@ -1,7 +1,7 @@
 CHIP P2S {
     IN indata[4],enable,load;
     OUT sout,complete;
-    PARTS :
+    PARTS:
     Extend4To16(in=indata,out=16);
     Register(in=16,load=load,out=out1);
     Counter(increment=enable,reset=load,out=out2);
