@@ -10,7 +10,7 @@ CHIP P2S {
     Or(a=e4,b=e6,out=out3);
     Or(a=out2,b=out3,out=out4);
     Not(in=out4,out=out5);
-    DFF(in=out5,out=reout6set11);
+    DFF(in=out5,out=out6);
     Or(a=out6,b=c1,out=reset);
 
     Counter(inc=true,reset=reset,out[0..1]=sel,out[0]=out7,out[1]=out8);
