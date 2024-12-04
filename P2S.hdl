@@ -4,11 +4,10 @@ CHIP P2S {
 
     PARTS:
     Register(in=indata, load=load, out=storedData);
-    Counter(width=2, out=bitCounter, inc=enable, reset=resetCounter);
+    Counter(width=2, inc=enable, out=bitCounter);
     Mux4Way16(
-        a=storedData[0], b=storedData[1], c=storedData[2], d=storedData[3], 
+        a[0..15]=0, b[0..15]=0, c[0..15]=0, d[0..15]=storedData,
         sel=bitCounter, out=sout
     );
-    And(a=enable, b=bitCounter[3], out=transmitComplete);
-    DFF(in=transmitComplete, out=complete, reset=resetComplete);
+    And(a=enable, b=bitCounter[3], out=complete);
 }
