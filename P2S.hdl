@@ -5,7 +5,7 @@ CHIP P2S {
 
     PARTS:
     Or16(a[0]=indata[0],a[1]=indata[1],a[2]=indata[2],a[3]=indata[3],a[4]=false,a[5]=false,a[6]=false,a[7]=false,a[8]=false,a[9]=false,a[10]=false,a[11]=false,a[12]=false,a[13]=false,a[14]=false,a[15]=false,out=out1);
-    Register(in=out1,load=load,out[0..15]=out2,out[0]=a0,out[1]=a1,out[2]=a2,out[3]=a3);
+    Register(in=out1,load=load,out[0..15]=value,out[0]=a0,out[1]=a1,out[2]=a2,out[3]=a3);
     Or(a=enable,b=e2,out=out2);
     Or(a=e4,b=e6,out=out3);
     Or(a=out2,b=out3,out=out4);
@@ -22,15 +22,15 @@ CHIP P2S {
     DFF(in=enable,out=e1);
 
     Mux(a=e1,b=false,sel=c1,out=e2);
-    Register(in=out2,load=e2,out=value2,out[1]=and2);
+    Register(in=value,load=e2,out=value2,out[1]=and2);
     DFF(in=e2,out=e3);
     
     Mux(a=e3,b=false,sel=c1,out=e4);
-    Register(in=out2,load=e4,out=value3,out[2]=and3);
+    Register(in=value,load=e4,out=value3,out[2]=and3);
     DFF(in=e4,out=e5);
 
     Mux(a=e5,b=false,sel=c1,out=e6);
-    Register(in=out2,load=e6,out=value4,out[3]=and4);
+    Register(in=value,load=e6,out=value4,out[3]=and4);
 
 
     Or16(a[0]=and1,a[1]=false,a[2]=false,a[3]=false,a[4]=false,a[5]=false,a[6]=false,a[7]=false,a[8]=false,a[9]=false,a[10]=false,a[11]=false,a[12]=false,a[13]=false,a[14]=false,a[15]=false,out=or1);
