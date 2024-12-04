@@ -1,7 +1,7 @@
 CHIP Counter {
     IN inc, reset;
     OUT out[16];
-    PARTS :
+    PARTS:
     Inc16(in=value,out=out1);
     Mux16(a=value,b=out1,sel=inc,out=out2);
     Mux16(a=out2,b=false,sel=reset,out=out3);
