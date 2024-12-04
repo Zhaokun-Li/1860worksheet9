@@ -1,9 +1,0 @@
-CHIP Extend2To4{
-    IN in[2];
-    OUT out[4];
-    PARTS :
-    0r(a=false,b=false,out=out[0]);
-    0r(a=false,b=false,out=out[1]);
-    0r(a=in[0]，b=false,out=out[2]);
-    0r(a=in[1]，b=false,out=out[3]);
-}

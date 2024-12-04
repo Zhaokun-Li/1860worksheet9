@@ -1,15 +1,10 @@
-CHIP Counter{
-    IN increment,reset;
-    OUT out[2];
-
-    PARTS:
-
-    DFF(in=bit0Next，out=bit0Current);
-    DFF(in=bit1Next,out=bit1Current);
-    Xor(a=bit0Current,b=increment,out=bit0Next);
-    And(a=bit0Next,b=reset,out=bit0Output);
-    And(a=bit0Output,b=increment,out=bit1Enable);
-    Xor(a=bit1Current,b=bit1Enable,out=bit1Next)
-    Or(a=bit0Current,b=false,out=out[0]);
-    Or(a=bit1Current,b=false,out=out[1]);
+CHIP Counter {
+    IN inc, reset;
+    OUT out[16];
+    PARTS :
+    Inc16(in=value,out=out1);
+    Mux16(a=value,b=out1,sel=inc,out=out2);
+    Mux16(a=out2,b=false,sel=reset,out=out3);
+    Register(in=out3,load=true,out=value);
+    And16(a=value,b=true,out=out);
 }
